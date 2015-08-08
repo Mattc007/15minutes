@@ -10,7 +10,11 @@ default: &default
   timeout: 5000
 
 development:
+  adapter: postgresql
+  encoding: unicode
   database: db/development
+  username: postgres
+  password: dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
