@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Current Queue Items:</h1>
+
+    <% if @queue_items.count == 0 %>
+      Nothing added yet!
+    <% else %>
+      <table class="table table-bordered">
+        <thead>
+          <th>Start Time</th>
+          <th>Name</th>
+          <th>Link</th>
+          <th>Length</th>
+          <th>User</th>
+        </thead>
+        <tbody>
+        <% @queue_items.each do |queue_item| %>
+          <tr>
+            <td><%= queue_item.queue_slot %></td>
+            <td><%= queue_item.medium.name %></td>
+            <td><%= link_to queue_item.medium.external_id,
+                            'https://www.youtube.com/watch?v=' + queue_item.medium.external_id,
+                            target: '_blank' %>
+            </td>
+            <td><%= queue_item.medium.length_in_seconds %></td>
+            <td><%= queue_item.medium.user.email %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

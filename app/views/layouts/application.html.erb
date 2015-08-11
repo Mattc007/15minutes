@@ -31,9 +31,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Fifteen Minutes</a>
+      <%= link_to 'FifteenMin', root_path, class: 'navbar-brand' %>
     </div>
     <p class="navbar-text navbar-right">
+    <%= link_to 'Queue', queue_items_path %> |
+    <%= link_to 'Media', media_path %> |
     <% if user_signed_in? %>
       <strong><%= current_user.email %></strong>
       <%= link_to 'Profile', edit_user_registration_path, class: 'navbar-link' %> |

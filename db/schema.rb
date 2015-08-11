@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811003652) do
+ActiveRecord::Schema.define(version: 20150811012442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "media", force: :cascade do |t|
+    t.integer  "format_type_id",    default: 1
+    t.string   "external_id"
+    t.integer  "length_in_seconds"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "media", ["user_id"], name: "index_media_on_user_id", using: :btree
+
+  create_table "queue_items", force: :cascade do |t|
+    t.integer  "medium_id"
+    t.string   "queue_slot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "queue_items", ["medium_id"], name: "index_queue_items_on_medium_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

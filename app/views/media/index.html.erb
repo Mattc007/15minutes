@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>List of current media:</h1>
+
+    <% if @media.count == 0 %>
+      Nothing added yet!
+    <% else %>
+      <table class="table table-bordered">
+        <thead>
+          <th>Format</th>
+          <th>Link</th>
+          <th>Length</th>
+          <th>User</th>
+        </thead>
+        <tbody>
+        <% @media.each do |medium| %>
+          <tr>
+            <td><%= icon('youtube') %></td>
+            <td><%= link_to medium.external_id,
+                            'https://www.youtube.com/watch?v=' + medium.external_id,
+                            target: '_blank' %>
+            </td>
+            <td><%= medium.length_in_seconds %></td>
+            <td><%= medium.user_id %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
