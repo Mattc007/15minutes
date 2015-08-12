@@ -3,10 +3,39 @@
 <head>
   <title>FifteenMinutes</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="index">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Fifteen Minutes', root_path, class: 'navbar-brand page-scroll' %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to 'My Profile', edit_user_registration_path, class: 'navbar-link' %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
+      <% else %>
+        <li><%= link_to 'Login', new_user_session_path, class: 'navbar-link' %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class: 'navbar-link' %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <% if notice %>
   <div class="alert alert-info alert-dismissible" role="alert">
@@ -22,35 +51,7 @@
   </div>
 <% end %>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'FifteenMin', root_path, class: 'navbar-brand' %>
-    </div>
-    <p class="navbar-text navbar-right">
-    <%= link_to 'Queue', queue_items_path %> |
-    <%= link_to 'Media', media_path %> |
-    <% if user_signed_in? %>
-      <strong><%= current_user.email %></strong>
-      <%= link_to 'Profile', edit_user_registration_path, class: 'navbar-link' %> |
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-link' %>
-    <% else %>
-      <%= link_to 'Sign up', new_user_registration_path, class: 'navbar-link' %> |
-      <%= link_to 'Login', new_user_session_path, class: 'navbar-link' %>
-    <% end %>
-    </p>
-  </div>
-</div>
-
-<div class="container">
-  <%= yield %>
-</div>
+<%= yield %>
 
 </body>
 </html>
