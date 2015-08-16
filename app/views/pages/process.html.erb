@@ -17,10 +17,23 @@
     <div class="col-sm-offset-2 col-sm-8">
       <form class="form">
         <div class="input-group input-group-lg" style="display:block;">
-          <input type="text" class="form-control" placeholder="YouTubez go herez" id="yt-link" />
-          <%= link_to 'Find it!', '#', class: 'btn btn-xl' %>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="YouTubez go herez" id="yt-link" />
+            </div>
+            <div class="col-sm-2">
+              <%= link_to 'Find it!', '#', class: 'btn btn-xl', id: 'yt-link-btn' %>
+            </div>
+          </div>
         </div>
       </form>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-offset-2 col-md-8">
+        <div class="find-it-message" style="display:none;"></div>
+      </div>
+    </div>
     </div>
   </div>
 </section>

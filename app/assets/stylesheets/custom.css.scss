@@ -11,3 +11,8 @@
     width: 560px;
   }
 }
+
+.find-it-message.success {
+  @extend .alert;
+  @extend .alert-success;
+}
